@@ -1,0 +1,16 @@
+
+Hello! Shubham. You are using () =>
+{
+    var osName = os.type();
+    return osName;
+} platform.
+Hello! Shubham. You are using function () 
+{
+    var osName = os.type();
+    return osName;
+} platform.
+Hello! Shubham. You are using Windows_NT platform.
+Hello! Shubham. You are using Windows_NT 10.0.17134 platform.
+Hello! Shubham. You are using Windows_NT 10.0.17134 platform.
+Hello! Shubham. You are using Windows_NT 10.0.17134 platform.
+Hello! Shubham. You are using Windows_NT 10.0.17134 platform.
