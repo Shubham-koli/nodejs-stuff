@@ -3,7 +3,7 @@ var fs = require("fs");
 
 var baseURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
 var city = 'Pune';
-const APIkey = '&key=AIzaSyA4Q7APjWXCpxYG7etHAsv4V-V10yz_rZI';
+const APIkey = '';
 
 
 request({
@@ -11,7 +11,7 @@ request({
     json: true
 }, (error, response, body) => {
     console.log(error);
-    logLocation(response);
+    logLocation(body);
     console.log(JSON.stringify(body, undefined, 2));
 });
 
