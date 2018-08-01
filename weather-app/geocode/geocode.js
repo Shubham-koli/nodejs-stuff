@@ -1,5 +1,5 @@
 const request = require("request");
-var fs = require("fs");
+let fs = require("fs");
 const color = require("colors/safe");
 const Google_APIkey = process.env.GOOGLE_API_KEY;
 
@@ -7,7 +7,7 @@ const Google_APIkey = process.env.GOOGLE_API_KEY;
 
 
 
-var geocodeAddress = (address, callback) => {
+let geocodeAddress = (address, callback) => {
     request({
             url: address + Google_APIkey,
             json: true
@@ -38,7 +38,7 @@ var geocodeAddress = (address, callback) => {
 };
 
 //Writes data into location-data.json
-var logData = response => {
+let logData = response => {
     fs.writeFileSync("location-data.json", JSON.stringify(response), err => {
         if (err) throw err;
         console.log("The file has been saved!");
@@ -46,7 +46,7 @@ var logData = response => {
 };
 
 //Shows output in Colors.
-var showInfo = body => {
+let showInfo = body => {
     console.log(
         color.cyan(`Address is ${body.results[0].formatted_address}
       Location:\n      Latitude: ${body.results[0].geometry.location.lat}

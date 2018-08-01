@@ -1,12 +1,12 @@
 require("dotenv").config();
 const yargs = require("yargs");
 const request = require("request");
-var fs = require("fs");
+let fs = require("fs");
 const color = require("colors/safe");
 const geocode = require('./geocode/geocode');
 const weather = require('./weather/weather');
 
-var argv = yargs
+let argv = yargs
   .options({
     a: {
       demand: true,
@@ -19,8 +19,8 @@ var argv = yargs
   .alias("help", "h")
   .argv;
 
-var address = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURIComponent(argv.a);
-var location;
+let address = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURIComponent(argv.a);
+let location;
 
 //Output the weather
 geocode.geocodeAddress(address, (errorMessage, results) => {
@@ -43,7 +43,7 @@ geocode.geocodeAddress(address, (errorMessage, results) => {
   }
 });
 
-var show = (fieldname, field) => {
+let show = (fieldname, field) => {
   if (field)
     console.log(`${fieldname} ` + color.green(JSON.stringify(field)));
 };

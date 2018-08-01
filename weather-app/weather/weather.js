@@ -4,7 +4,7 @@ const geocode = require('../geocode/geocode');
 
 const Weather_APIkey = process.env.WEATHER_API_KEY;
 
-var getWeather = (location, callback) => {
+let getWeather = (location, callback) => {
     request({
         url: `https://api.darksky.net/forecast/${Weather_APIkey}/${location.latitude},${location.longitude}?units=si&exclude=daily,hourly,minutely`,
         json: true
