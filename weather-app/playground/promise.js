@@ -39,6 +39,8 @@ let geocodeAddress = (address) => {
                     //reject("Can not connect to google servers.");
                 } else if (body === undefined || body.status === "ZERO_RESULTS") {
                     reject("No Results Found");
+                } else if (body.status === "OVER_QUERY_LIMIT") {
+                    reject('You have exceeded your API Quota');
                 } else {
                     //logData(body);
                     //console.log(JSON.stringify(body, undefined, 2));
