@@ -19,20 +19,16 @@ hbs.registerHelper("getCurrentUser", () => {
   return user.username;
 });
 
+// can log every user activity
 app.use((request, response, next) => {
   let now = new Date().toString();
-  let fileName = new Date();
-  let options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  };
-  console.log(fileName.toLocaleDateString("en-US", options));
+  let Today = currentDate();
+
   let log = `${now}: ${request.method} ${request.url}`;
   let name = getName();
+
   fs.appendFile(
-    `logs/${fileName.toLocaleDateString("en-US", options)}.log`,
+    `logs/${Today}.log`,
     log + ` request made by ${name} ` + "\n",
     err => {
       if (err) {
@@ -61,6 +57,17 @@ app.get("/about", (request, response) => {
 let getName = () => {
   let user = os.userInfo();
   return user.username;
+};
+
+let currentDate = () => {
+  let Today = new Date();
+  let options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+  return Today.toLocaleDateString("en-US", options);
 };
 
 app.listen(3000, () => console.log("Example app listening on port 3000!"));
