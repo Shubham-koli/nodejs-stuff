@@ -7,7 +7,6 @@ const app = express();
 
 hbs.registerPartials(__dirname + "/views/partials");
 app.set("view engine", "hbs");
-app.use(express.static(__dirname + "/public"));
 
 hbs.registerHelper("getCurrentYear", () => {
   return new Date().getUTCFullYear();
@@ -26,20 +25,19 @@ app.use((request, response, next) => {
 
   let log = `${now}: ${request.method} ${request.url}`;
   let name = getName();
+  logUser(log, Today, name);
 
-  fs.appendFile(
-    `logs/${Today}.log`,
-    log + ` request made by ${name} ` + "\n",
-    err => {
-      if (err) {
-        console.log("some error happened" + err);
-      }
-    }
-  );
-  debugger;
   console.log(log);
   next();
 });
+
+//Maintenance Mode
+app.use((request, response, next) => {
+  response.render("maintenance.hbs");
+});
+
+// Static Partials
+app.use(express.static(__dirname + "/public"));
 
 app.get("/", (request, response) => {
   response.send("<h1>Shubham Koli</h1>");
@@ -68,6 +66,18 @@ let currentDate = () => {
     day: "numeric"
   };
   return Today.toLocaleDateString("en-US", options);
+};
+
+let logUser = (log, Date, user) => {
+  fs.appendFile(
+    `logs/${Date}.log`,
+    log + ` request made by ${user} ` + "\n",
+    err => {
+      if (err) {
+        console.log("some error happened" + err);
+      }
+    }
+  );
 };
 
 app.listen(3000, () => console.log("Example app listening on port 3000!"));
