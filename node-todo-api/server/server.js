@@ -58,6 +58,7 @@ let newUser = new User({
     pwd: 'secret123'
 });
 
+
 newUser.save().then((doc) => {
     console.log('User Created', doc);
 }, (err) => {
