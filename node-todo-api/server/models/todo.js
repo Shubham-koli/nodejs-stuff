@@ -2,13 +2,18 @@ const mongoose = require('mongoose');
 
 const Todo = mongoose.model('Todos', {
     text: {
-        type: String
+        type: String,
+        required: true,
+        minlength: 8,
+        trim: 1
     },
     completed: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     completedAt: {
-        type: Number
+        type: Number,
+        default: null
     }
 });
 
